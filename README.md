@@ -1,5 +1,5 @@
-# GSAPRN
 
+# GSAPRN
 Support for gsap: 3.0.0+. For older versions use [https://github.com/tufik2/TweenMaxRN](https://github.com/tufik2/TweenMaxRN)
 - This repository enable GSAP to work with ReactNative thanks to Direct Manipulation.
 - With this library is possible animate Styles and Transform properties.
@@ -7,7 +7,6 @@ Support for gsap: 3.0.0+. For older versions use [https://github.com/tufik2/Twee
 - The performance using Direct Manipulation is really good, specially when we compile our app in release version.
 
 # How use
-
 - Include src/libs/TweenMaxRN.js in your project library folder
 - Install gsap and gsaprn
 	> npm install gsap
@@ -41,7 +40,7 @@ AutoKillTween.Root({tween1..., tween2...});
 </View>
 ```
 
-Here a code using AutoKillTween
+Here there is a code of an animation using AutoKillTween
 
 ```javascript
 
