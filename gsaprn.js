@@ -4,19 +4,19 @@
     > npm install RNGsap
 
     Example:
-        import {gsap, Back, KillTween} from 'RNGsap';
+        import {gsap, Back, AutoKillTween} from 'RNGsap';
 
         this.tween = gsap.to(this.box, {duration:1, style:{left:50}, transform:{rotate:90, scale:0.5}, ease:Back.easeInOut});
         <View ref={box => this.box = box} style={{width:100, height:100, backgroundColor:"#F00"}}></View>
 
         // Kill Tween animations before componentWillUnmount to avoid error trying update unmounted component, this 2 ways receive a single or an array of Tweens, Tweenline or a mix of both.
-            componentWillUnmount(){ KillTween.Targets(this.tween); }
-            <KillTween targets={[this.tween1, this.tween2]} />
+            componentWillUnmount(){ AutoKillTween.Targets(this.tween); }
+            <AutoKillTween targets={[this.tween1, this.tween2]} />
 */
 import React, {Component} from 'react';
 import { gsap, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ, TweenLite, TweenMax, TimelineLite, TimelineMax } from 'gsap/src/gsap-core';
 
-export class KillTween extends Component{
+export class AutoKillTween extends Component{
     static defaultProps = {targets:null, root:null}
 
     constructor(props) {
@@ -31,7 +31,7 @@ export class KillTween extends Component{
             if(!target) continue;
             if(target.getChildren){
                 let children = target.getChildren();
-                KillTween.Targets(children);
+                AutoKillTween.Targets(children);
             }else{
                 target.kill();
             }
@@ -44,14 +44,14 @@ export class KillTween extends Component{
         for(let i = 0; i < keys.length; i++){
             let key = keys[i];
             if(element[key] && typeof element[key] == "object" && element[key]._dp){
-                KillTween.Targets(element[key]);
+                AutoKillTween.Targets(element[key]);
             }
         };
     }
 
     componentWillUnmount() {
-        KillTween.Targets(this.props.targets);
-        KillTween.Root(this.props.root);
+        AutoKillTween.Targets(this.props.targets);
+        AutoKillTween.Root(this.props.root);
     }
 
     render() { return null }
