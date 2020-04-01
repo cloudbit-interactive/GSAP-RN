@@ -1,0 +1,39 @@
+{
+  "name": "gsaprn",
+  "version": "0.0.1",
+  "description": "GSAP is a JavaScript library for building high-performance animations that work in **every** major browser. Animate CSS, SVG, canvas, React, Vue, WebGL, colors, strings, motion paths, generic objects...anything JavaScript can touch! No other library delivers such advanced sequencing, reliability, and tight control while solving real-world problems on millions of sites. GSAP works around countless browser inconsistencies; your animations **just work**.  At its core, GSAP is a high-speed property manipulator, updating values over time with extreme accuracy. It's up to 20x faster than jQuery! See https://greensock.com/why-gsap/ for what makes GSAP so special.",
+  "main": "gsaprn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudbit-interactive/GSAPRN.git"
+  },
+  "keywords": [
+    "GSAP",
+		"GreenSock",
+		"animation",
+		"MotionPathPlugin",
+		"motion",
+		"motionPath",
+		"easing",
+		"JavaScript",
+		"PixiPlugin",
+		"CustomEase",
+		"SVG",
+		"3D",
+		"2D",
+		"transform",
+		"morph",
+		"morphing",
+    "tweening",
+    "ReactNative"
+  ],
+  "author": "CloudBit Interactive",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cloudbit-interactive/GSAPRN/issues"
+  },
+  "homepage": "https://github.com/cloudbit-interactive/GSAPRN#readme"
+}
