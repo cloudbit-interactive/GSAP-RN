@@ -4,54 +4,56 @@
     > npm install RNGsap
 
     Example:
-        import {gsap, Back, AutoKillTween} from 'RNGsap';
+        import {gsap, Back, AutoKillTweens} from 'RNGsap';
 
         this.tween = gsap.to(this.box, {duration:1, style:{left:50}, transform:{rotate:90, scale:0.5}, ease:Back.easeInOut});
         <View ref={box => this.box = box} style={{width:100, height:100, backgroundColor:"#F00"}}></View>
 
         // Kill Tween animations before componentWillUnmount to avoid error trying update unmounted component, this 2 ways receive a single or an array of Tweens, Tweenline or a mix of both.
-            componentWillUnmount(){ AutoKillTween.Targets(this.tween); }
-            <AutoKillTween targets={[this.tween1, this.tween2]} />
+            componentWillUnmount(){ AutoKillTweens.tweensOf(this.tween); }
+            <AutoKillTweens tweens={[this.tween1, this.tween2]} />
 */
 import React, {Component} from 'react';
 import { gsap, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ, TweenLite, TweenMax, TimelineLite, TimelineMax } from 'gsap/src/gsap-core';
 
-export class AutoKillTween extends Component{
-    static defaultProps = {targets:null, root:null}
+export class AutoKillTweens extends Component{
+    static defaultProps = {tweens:null}
 
     constructor(props) {
         super(props);
     }
 
-    static Targets(targets){
-        if(!targets) return;
-        if(!Array.isArray(targets)) targets = [targets];
-        for(let i = 0; i < targets.length; i++){
-            let target = targets[i];
-            if(!target) continue;
-            if(target.getChildren){
-                let children = target.getChildren();
-                AutoKillTween.Targets(children);
+    static kill(tweens){
+        if(!tweens) return;
+        if(!Array.isArray(tweens)) tweens = [tweens];
+        for(let i = 0; i < tweens.length; i++){
+            let tween = tweens[i];
+            if(!tween) continue;
+            if(typeof tween == "object" && !tween._dp) continue;
+            if(tween.getChildren){
+                let children = tween.getChildren();
+                AutoKillTweens.kill(children);
             }else{
-                target.kill();
+                tween.kill();
             }
         }
     }
 
-    static Root(element){
-        if(!element) return;
-        let keys = Object.keys(element);
+    static tweensOf(tweens){
+        if(!tweens) return;
+        if(typeof tweens == "object" && tweens._dp){ AutoKillTweens.kill(tweens); return; }
+        if(Array.isArray(tweens)){ AutoKillTweens.kill(tweens); return; }
+        let keys = Object.keys(tweens);
         for(let i = 0; i < keys.length; i++){
             let key = keys[i];
-            if(element[key] && typeof element[key] == "object" && element[key]._dp){
-                AutoKillTween.Targets(element[key]);
+            if(tweens[key] && typeof tweens[key] == "object" && tweens[key]._dp){
+                AutoKillTweens.kill(tweens[key]);
             }
         };
     }
 
     componentWillUnmount() {
-        AutoKillTween.Targets(this.props.targets);
-        AutoKillTween.Root(this.props.root);
+        AutoKillTweens.tweensOf(this.props.tweens);
     }
 
     render() { return null }
@@ -138,4 +140,4 @@ gsap.registerPlugin(
     }
 );
 
-export { gsap, TweenLite, TweenMax, TimelineMax, TimelineLite, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ };
+export { gsap, TweenMax, TweenLite, TimelineMax, TimelineLite, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ };
