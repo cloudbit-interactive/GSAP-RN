@@ -18,7 +18,6 @@ componentDidMount() {
     gsap.to(this.ref, {duration:1, style:{left:50}, transform:{rotate:90, scale:0.5}, ease:Back.easeInOut});  
 }
 
-// render view
 <View ref={ref=> this.ref = ref} style={{width:100, height:100, backgroundColor:"#F00"}}></View>
 ```
 
@@ -31,7 +30,6 @@ AutoKillTween.tweensOf(tween)
 
 // If you don't want to worry about kill tween by tween, You can define AutoKillTween also like component and It will stop all animation automatically before unmount the component.
 <View>
-	// AutoKillTween will checkout if there are tweens linked to the Class and stop its.
 	<AutoKillTween tweens={this} />  
 </View>
 ```
@@ -80,6 +78,11 @@ const styles = StyleSheet.create({
     button:{fontSize:20, backgroundColor: "#337ab7", paddingVertical:10, paddingHorizontal:20, color:"#FFF", borderRadius:5}
 })
 ```
+![animation](http://int-server-one.info/cloudbit/gsap-rn/gsap-rn-animation1.gif)
 
-# DEMO
-![animation](http://int-server-one.info/cloudbit/tweenmaxRN.gif)
+
+# DEMOS
+[DOWNLOAD APK](http://int-server-one.info/cloudbit/gsap-rn/gsap-rn.apk)
+![animation](http://int-server-one.info/cloudbit/gsap-rn/gsap-rn-animation2.gif)
+
+![animation](http://int-server-one.info/cloudbit/gsap-rn/tweenmaxRN.gif)
