@@ -45,9 +45,9 @@ export default class Main extends Component {
     boxes = [];
 
     onPress(){
-		// Using AutoKillTweens.tweensOf method to kill a specific tween
-		AutoKillTweens.tweensOf(this.tl);
-		// We mantain the reference of the tween directly in the Class
+	// Using AutoKillTweens.tweensOf method to kill a specific tween
+	AutoKillTweens.tweensOf(this.tl);
+	// We mantain the reference of the tween directly in the Class
         this.tl = gsap.timeline();
         this.tl.to(this.boxes, {duration:1, transform:{y:-100, scale:0.8}, ease:Power2.easeInOut, stagger: {amount: 0.3}});
         this.tl.to(this.boxes, {duration:0.3, transform:{y:0, scale:1 }, ease:Elastic.easeOut, stagger: {amount: 0.3}});
@@ -55,20 +55,20 @@ export default class Main extends Component {
 
     render() {
         return (
-			<View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
-				/* We pass the Class reference to AutoKillTween Componet. 
-					If this component will unmount, AutoKillTween will end all tween references directy linked to the Class.
-				 */
-                <AutoKillTweens tweens={this} />
-                <View style={{flexDirection:"row"}}>
-                    <View ref={ ref=>this.boxes.push(ref) } style={styles.box} />
-                    <View ref={ ref=>this.boxes.push(ref) } style={styles.box} />
-                    <View ref={ ref=>this.boxes.push(ref) } style={styles.box} />
-                </View>
-                <TouchableOpacity onPress={this.onPress.bind(this)}>
-                    <Text ref={ref=>this.text = ref} style={[styles.button, {marginTop: 30}]} >Touch Me</Text>
-                </TouchableOpacity>
-            </View>
+		<View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+			/* We pass the Class reference to AutoKillTween Componet. 
+				If this component will unmount, AutoKillTween will end all tween references directy linked to the Class.
+			 */
+			<AutoKillTweens tweens={this} />
+			<View style={{flexDirection:"row"}}>
+			    <View ref={ ref=>this.boxes.push(ref) } style={styles.box} />
+			    <View ref={ ref=>this.boxes.push(ref) } style={styles.box} />
+			    <View ref={ ref=>this.boxes.push(ref) } style={styles.box} />
+			</View>
+			<TouchableOpacity onPress={this.onPress.bind(this)}>
+			    <Text ref={ref=>this.text = ref} style={[styles.button, {marginTop: 30}]} >Touch Me</Text>
+			</TouchableOpacity>
+		    </View>
         );
     }
 }
