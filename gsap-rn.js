@@ -1,10 +1,9 @@
 /* TweenMaxRN
     INSTRUCTIONS
-    > npm install gsap
-    > npm install RNGsap
+    > npm install gsap-rn
 
     Example:
-        import {gsap, Back, AutoKillTweens} from 'RNGsap';
+        import {gsap, Back, AutoKillTweens} from 'gsap-rn';
 
         this.tween = gsap.to(this.box, {duration:1, style:{left:50}, transform:{rotate:90, scale:0.5}, ease:Back.easeInOut});
         <View ref={box => this.box = box} style={{width:100, height:100, backgroundColor:"#F00"}}></View>
@@ -17,7 +16,6 @@ import React, {Component} from 'react';
 import { gsap, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ, TweenLite, TweenMax, TimelineLite, TimelineMax } from 'gsap/src/gsap-core';
 
 export class AutoKillTweens extends Component{
-    static defaultProps = {tweens:null}
 
     constructor(props) {
         super(props);
@@ -58,6 +56,9 @@ export class AutoKillTweens extends Component{
 
     render() { return null }
 }
+
+AutoKillTweens.defaultProps = { tweens:null }
+
 
 gsap.registerPlugin(
     {
