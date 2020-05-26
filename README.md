@@ -1,4 +1,5 @@
 
+
 # GSAP-RN
 Support for gsap: 3.0.0+. For older versions use [https://github.com/tufik2/TweenMaxRN](https://github.com/tufik2/TweenMaxRN)
 - This repository enable GSAP to work with ReactNative thanks to Direct Manipulation.
@@ -14,10 +15,23 @@ Support for gsap: 3.0.0+. For older versions use [https://github.com/tufik2/Twee
 import {gsap, Back} from 'gsap-rn';
 
 componentDidMount() {  
-    gsap.to(this.ref, {duration:1, style:{left:50}, transform:{rotate:90, scale:0.5}, ease:Back.easeInOut});  
+    gsap.to(this.ref, {duration:1, style:{left:50}, transform:{rotate:90, scale:0.5}, 	ease:Back.easeInOut});  
 }
 
 <View ref={ref=> this.ref = ref} style={{width:100, height:100, backgroundColor:"#F00"}}></View>
+```
+Animating percentages
+```javascript
+	timeline = gsap.timeline();
+	timeline.set(this.bar, {width:"0%"});
+	timeline.to(this.bar, {duration:1, style:{width:"100%"}, ease:Power2.easeInOut});
+```
+
+Animating colors
+```javascript
+	timeline = gsap.timeline();
+	timeline.set(this.box, {backgroundColor:"#F00"});
+	timeline.to(this.box, {duration:1, style:{backgroundColor:"#F0F"}, ease:Power2.easeInOut});
 ```
 
 # AutoKillTween
