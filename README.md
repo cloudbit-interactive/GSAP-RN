@@ -23,14 +23,14 @@ componentDidMount() {
 Animating percentages
 ```javascript
 	timeline = gsap.timeline();
-	timeline.set(this.bar, {width:"0%"});
+	timeline.set(this.bar, {style:{width:"0%"}});
 	timeline.to(this.bar, {duration:1, style:{width:"100%"}, ease:Power2.easeInOut});
 ```
 
 Animating colors
 ```javascript
 	timeline = gsap.timeline();
-	timeline.set(this.box, {backgroundColor:"#F00"});
+	timeline.set(this.box, {style:{backgroundColor:"#F00"}});
 	timeline.to(this.box, {duration:1, style:{backgroundColor:"#F0F"}, ease:Power2.easeInOut});
 ```
 
