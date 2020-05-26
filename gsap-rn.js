@@ -13,10 +13,12 @@
             <AutoKillTweens tweens={[this.tween1, this.tween2]} />
 */
 import React, {Component} from 'react';
+import {YellowBox} from 'react-native';
 import { gsap, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ, TweenLite, TweenMax, TimelineLite, TimelineMax } from 'gsap/src/gsap-core';
 
-export class AutoKillTweens extends Component{
+YellowBox.ignoreWarnings(['Invalid property']);
 
+export class AutoKillTweens extends Component{
     constructor(props) {
         super(props);
     }
@@ -74,6 +76,8 @@ gsap.registerPlugin(
                 let startValue = target["currentStatus"][prop] || 0;
                 if(prop == "backgroundColor") startValue = target["currentStatus"][prop] || "#000000";
                 if(prop == "color") startValue = target["currentStatus"][prop] || "#000000";
+                if(String(value).indexOf("%") != -1 && String(startValue).indexOf("%") == -1){ startValue = startValue+"%"; }
+                if(String(startValue).indexOf("%") != -1 && String(value).indexOf("%") == -1){ startValue = startValue.replace("%",""); }
                 this.interpolateList[prop] = gsap.utils.interpolate(startValue, value);
             }
         },
@@ -81,6 +85,11 @@ gsap.registerPlugin(
             if(!data.target || !data.target.setNativeProps) return;
             for (let prop in data.interpolateList) {
                 let value = data.interpolateList[prop](progress);
+                if(typeof value == "object"){
+                    let objValue = "";
+                        Object.values(value).map(value=>{ objValue += value; });
+                    value = objValue;
+                }
                 let realProp = prop;
                 if(realProp == "alpha") realProp = "opacity";
                 if(realProp == "position" && value === 0) continue;
