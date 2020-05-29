@@ -1,6 +1,6 @@
 /* TweenMaxRN
     INSTRUCTIONS
-    > npm install gsap-rn
+    > npm install gsap gsap-rn
 
     Example:
         import {gsap, Back, AutoKillTweens} from 'gsap-rn';
