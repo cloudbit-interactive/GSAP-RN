@@ -8,8 +8,8 @@ Support for gsap: 3.0.0+. For older versions use [https://github.com/tufik2/Twee
 - The performance using Direct Manipulation is really good, specially when we compile our app in release version.
 
 # How use
-- Install gsap-rn
-	> npm install gsap-rn
+- Install gsap gsap-rn
+	> npm install gsap gsap-rn
 
 ```javascript
 import {gsap, Back} from 'gsap-rn';
