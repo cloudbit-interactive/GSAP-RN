@@ -13,10 +13,10 @@
             <AutoKillTweens tweens={[this.tween1, this.tween2]} />
 */
 import React, {Component} from 'react';
-import {YellowBox} from 'react-native';
+import {LogBox} from 'react-native';
 import { gsap, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ, TweenLite, TweenMax, TimelineLite, TimelineMax } from 'gsap/src/gsap-core';
 
-YellowBox.ignoreWarnings(['Invalid property']);
+LogBox.ignoreLogs(['Invalid property']);
 
 export class AutoKillTweens extends Component{
     constructor(props) {
