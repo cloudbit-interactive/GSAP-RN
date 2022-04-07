@@ -29,24 +29,18 @@ export class AutoKillTweens extends Component{
         for(let i = 0; i < tweens.length; i++){
             let tween = tweens[i];
             if(!tween) continue;
-            if(typeof tween == "object" && !tween._dp) continue;
-            if(tween.getChildren){
-                let children = tween.getChildren();
-                AutoKillTweens.kill(children);
-            }else{
-                tween.kill();
-            }
+            if(tween.kill) tween.kill();
         }
     }
 
     static tweensOf(tweens){
         if(!tweens) return;
-        if(typeof tweens == "object" && tweens._dp){ AutoKillTweens.kill(tweens); return; }
+        if(typeof tweens == "object" && tweens.kill){ AutoKillTweens.kill(tweens); return; }
         if(Array.isArray(tweens)){ AutoKillTweens.kill(tweens); return; }
         let keys = Object.keys(tweens);
         for(let i = 0; i < keys.length; i++){
             let key = keys[i];
-            if(tweens[key] && typeof tweens[key] == "object" && tweens[key]._dp){
+            if(tweens[key] && typeof tweens[key] == "object" && tweens[key].kill){
                 AutoKillTweens.kill(tweens[key]);
             }
         };
