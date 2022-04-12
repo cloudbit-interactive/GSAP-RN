@@ -16,7 +16,7 @@ import React, {Component} from 'react';
 import {LogBox} from 'react-native';
 import { gsap, Power0, Power1, Power2, Power3, Power4, Linear, Quad, Cubic, Quart, Quint, Strong, Elastic, Back, SteppedEase, Bounce, Sine, Expo, Circ, TweenLite, TweenMax, TimelineLite, TimelineMax } from 'gsap/src/gsap-core';
 
-LogBox.ignoreLogs(['Invalid property']);
+LogBox.ignoreLogs(['Invalid property', 'GSAP target']);
 
 export class AutoKillTweens extends Component{
     constructor(props) {
